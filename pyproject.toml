@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finagent"
+version = "0.1.0"
+description = "FinAgent — a multi-agent financial research system (LangGraph + Claude) with SEC EDGAR, web search, a sandboxed calculator and RAG."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Filip" }]
+keywords = ["langgraph", "agents", "llm", "finance", "sec-edgar", "rag", "evaluation"]
+
+# Core runtime — enough to run the graph, the eval harness and the API.
+# Heavy / optional pieces (RAG stack, alternate providers) live in extras below,
+# so the base install stays light and CI is fast.
+dependencies = [
+    "langgraph>=0.2.0",
+    "langchain-core>=0.3.0",
+    "anthropic>=0.39.0",
+    "pydantic>=2.7.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+]
+
+[project.optional-dependencies]
+# RAG stack — the user runs this locally (embedding providers are network-gated).
+rag = [
+    "chromadb>=0.5.0",
+    "voyageai>=0.3.0",
+    "pypdf>=4.2.0",
+]
+# Alternate LLM provider for the A/B comparison mentioned in the plan.
+openai = ["openai>=1.40.0"]
+# Alternate web-search provider (default web search uses the Anthropic server tool).
+tavily = ["tavily-python>=0.5.0"]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.6.0",
+    "reportlab>=4.2.0",
+]
+
+[project.scripts]
+finagent = "finagent.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+finagent = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "evals"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]  # line length handled by formatter; long prompt strings are fine
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,35 @@
+# Secrets — never commit real keys. Only .env.example is tracked.
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Local vector store (RAG persists here)
+data/chroma/
+*.sqlite3
+
+# Eval artifacts are regenerated; keep the committed real + offline reports explicitly.
+evals/results/*
+!evals/results/.gitkeep
+!evals/results/report_real.md
+!evals/results/report_real.json
+!evals/results/report_offline.md
+!evals/results/report_offline.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.ipynb_checkpoints

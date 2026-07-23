@@ -1,0 +1,689 @@
+{
+  "provider": "mock",
+  "when": "2026-07-23 14:34 UTC",
+  "summary": {
+    "n": 22,
+    "tool_exact_pct": 31.8,
+    "tool_mean_jaccard": 0.545,
+    "numeric_n": 14,
+    "numeric_accuracy_pct": 0.0,
+    "contains_n": 10,
+    "contains_accuracy_pct": 70.0,
+    "avg_tool_calls": 1.23,
+    "avg_iterations": 0.23,
+    "reflection_trigger_rate_pct": 22.7,
+    "reflection_recall_pct": 100.0,
+    "reflection_expected_n": 5,
+    "avg_latency_s": 0.03,
+    "confidence_counts": {
+      "high": 22
+    },
+    "errors": 0
+  },
+  "results": [
+    {
+      "id": "q01_single_aapl_rev",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What was Apple's total revenue in its most recent full fiscal year (FY2025) according to its SEC filings?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.05,
+      "answer": "[mock] Answer to: \"What was Apple's total revenue in its most recent full fiscal year (FY2025) according to its SEC filings?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q02_single_msft_ni",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What was Microsoft's net income in fiscal year 2025 per its SEC filing?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.04,
+      "answer": "[mock] Answer to: \"What was Microsoft's net income in fiscal year 2025 per its SEC filing?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q03_single_aapl_q_rev",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What is the most recent quarterly revenue Apple has reported to the SEC?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.04,
+      "answer": "[mock] Answer to: 'What is the most recent quarterly revenue Apple has reported to the SEC?'. Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q04_calc_aapl_rev_growth",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "By what percentage did Apple's total revenue change from fiscal year 2024 to fiscal year 2025?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.04,
+      "answer": "[mock] Answer to: \"By what percentage did Apple's total revenue change from fiscal year 2024 to fiscal year 2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q05_calc_aapl_net_margin",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "What was Apple's net profit margin (net income divided by revenue) in FY2025?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"What was Apple's net profit margin (net income divided by revenue) in FY2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q06_calc_msft_net_margin",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "What was Microsoft's net profit margin in FY2025?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"What was Microsoft's net profit margin in FY2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q07_compare_net_margin",
+      "category": "comparison_reflection",
+      "difficulty": "hard",
+      "query": "How did Apple's net profit margin in FY2025 compare with Microsoft's? Which was higher?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar",
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": true,
+      "expect_reflection": true,
+      "reflection_notes": [
+        "Comparison requested but no data yet for MSFT."
+      ],
+      "n_tool_calls": 2,
+      "iterations": 1,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.05,
+      "answer": "[mock] Answer to: \"How did Apple's net profit margin in FY2025 compare with Microsoft's? Which was higher?\". Used tools: sec_edgar, sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q08_compare_rev_diff",
+      "category": "comparison_reflection",
+      "difficulty": "hard",
+      "query": "Which company had higher total revenue in FY2025, Apple or Microsoft, and by how much (in dollars)?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar",
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": true,
+      "expect_reflection": true,
+      "reflection_notes": [
+        "Comparison requested but no data yet for MSFT."
+      ],
+      "n_tool_calls": 2,
+      "iterations": 1,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.04,
+      "answer": "[mock] Answer to: 'Which company had higher total revenue in FY2025, Apple or Microsoft, and by how much (in dollars)?'. Used tools: sec_edgar, sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q09_calc_aapl_q1_yoy",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "How much did Apple's fiscal first-quarter revenue grow year over year, from FY2025 Q1 to FY2026 Q1 (percent)?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"How much did Apple's fiscal first-quarter revenue grow year over year, from FY2025 Q1 to FY2026 Q1 (percent)?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q10_rag_aapl_supply",
+      "category": "rag",
+      "difficulty": "medium",
+      "query": "According to the indexed 10-K filings, what supply-chain risk does Apple highlight?",
+      "expected_tools": [
+        "rag_retrieve"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": false,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: 'According to the indexed 10-K filings, what supply-chain risk does Apple highlight?'. Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q11_rag_msft_cloud",
+      "category": "rag",
+      "difficulty": "medium",
+      "query": "Based on the indexed filings, what is driving Microsoft's revenue growth?",
+      "expected_tools": [
+        "rag_retrieve"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": false,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"Based on the indexed filings, what is driving Microsoft's revenue growth?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q12_rag_msft_segment",
+      "category": "rag",
+      "difficulty": "medium",
+      "query": "Which segment led Microsoft's growth in FY2025 according to the indexed filing text?",
+      "expected_tools": [
+        "rag_retrieve"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": false,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"Which segment led Microsoft's growth in FY2025 according to the indexed filing text?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q13_web_aapl_ai_news",
+      "category": "web",
+      "difficulty": "medium",
+      "query": "What is the latest news about Apple's artificial-intelligence strategy?",
+      "expected_tools": [
+        "web_search"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.02,
+      "answer": "[mock] Answer to: \"What is the latest news about Apple's artificial-intelligence strategy?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q14_single_aapl_ni",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What was Apple's net income in FY2025?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.02,
+      "answer": "[mock] Answer to: \"What was Apple's net income in FY2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q15_single_msft_rev",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What was Microsoft's total revenue for fiscal year 2025?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"What was Microsoft's total revenue for fiscal year 2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q16_calc_msft_rev_growth",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "By what percentage did Microsoft's revenue grow from FY2024 to FY2025?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.02,
+      "answer": "[mock] Answer to: \"By what percentage did Microsoft's revenue grow from FY2024 to FY2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q17_compare_rev",
+      "category": "comparison_reflection",
+      "difficulty": "hard",
+      "query": "Compare Apple's and Microsoft's most recent annual revenue.",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar",
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": true,
+      "expect_reflection": true,
+      "reflection_notes": [
+        "Comparison requested but no data yet for MSFT."
+      ],
+      "n_tool_calls": 2,
+      "iterations": 1,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: \"Compare Apple's and Microsoft's most recent annual revenue.\". Used tools: sec_edgar, sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q18_ambiguous_profitable",
+      "category": "ambiguous_reflection",
+      "difficulty": "hard",
+      "query": "Is Apple or Microsoft more profitable, and by how much?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar",
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": true,
+      "expect_reflection": true,
+      "reflection_notes": [
+        "Comparison requested but no data yet for MSFT."
+      ],
+      "n_tool_calls": 2,
+      "iterations": 1,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: 'Is Apple or Microsoft more profitable, and by how much?'. Used tools: sec_edgar, sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q19_calc_combined_ni",
+      "category": "comparison_reflection",
+      "difficulty": "hard",
+      "query": "What was the combined FY2025 net income of Apple and Microsoft together?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar",
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": true,
+      "expect_reflection": true,
+      "reflection_notes": [
+        "Comparison requested but no data yet for MSFT."
+      ],
+      "n_tool_calls": 2,
+      "iterations": 1,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: 'What was the combined FY2025 net income of Apple and Microsoft together?'. Used tools: sec_edgar, sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q20_single_msft_q_rev",
+      "category": "single_tool",
+      "difficulty": "easy",
+      "query": "What is Microsoft's most recent quarterly revenue reported to the SEC?",
+      "expected_tools": [
+        "sec_edgar"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": true,
+      "tool_jaccard": 1.0,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.02,
+      "answer": "[mock] Answer to: \"What is Microsoft's most recent quarterly revenue reported to the SEC?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q21_calc_aapl_ni_growth",
+      "category": "multi_tool_calc",
+      "difficulty": "medium",
+      "query": "By what percent did Apple's net income change from FY2024 to FY2025?",
+      "expected_tools": [
+        "sec_edgar",
+        "calculator"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.5,
+      "numeric_applicable": true,
+      "numeric_correct": false,
+      "contains_applicable": false,
+      "contains_ok": null,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.02,
+      "answer": "[mock] Answer to: \"By what percent did Apple's net income change from FY2024 to FY2025?\". Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    },
+    {
+      "id": "q22_rag_msft_ai_risk",
+      "category": "rag",
+      "difficulty": "medium",
+      "query": "What capital-related risk does Microsoft mention regarding AI and datacenters in its filing?",
+      "expected_tools": [
+        "rag_retrieve"
+      ],
+      "tools_used": [
+        "sec_edgar"
+      ],
+      "tool_exact": false,
+      "tool_jaccard": 0.0,
+      "numeric_applicable": false,
+      "numeric_correct": null,
+      "contains_applicable": true,
+      "contains_ok": true,
+      "reflection_fired": false,
+      "expect_reflection": false,
+      "reflection_notes": [],
+      "n_tool_calls": 1,
+      "iterations": 0,
+      "confidence": "high",
+      "had_tool_error": false,
+      "latency_s": 0.03,
+      "answer": "[mock] Answer to: 'What capital-related risk does Microsoft mention regarding AI and datacenters in its filing?'. Used tools: sec_edgar.",
+      "key_numbers": {},
+      "error": null
+    }
+  ],
+  "missing": []
+}
