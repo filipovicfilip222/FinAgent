@@ -56,6 +56,8 @@ finagent = ["py.typed"]
 line-length = 100
 target-version = "py310"
 src = ["src", "tests", "evals"]
+# Notebooks follow different conventions (imports interleaved with setup cells); don't lint them.
+extend-exclude = ["*.ipynb"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
