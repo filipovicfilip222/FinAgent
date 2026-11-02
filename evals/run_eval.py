@@ -96,6 +96,9 @@ def _bool(v):
 
 def _markdown(summary, results, provider: str, when: str) -> str:
     s = summary
+    ok = [r for r in results if r.error is None]
+    tool_exact_k = sum(r.tool_exact for r in ok)
+    refl_k = sum(r.reflection_fired for r in ok)
     lines = [
         "# FinAgent — Evaluation Report",
         "",
@@ -107,13 +110,13 @@ def _markdown(summary, results, provider: str, when: str) -> str:
         "",
         "| Metric | Value |",
         "|---|---|",
-        f"| Tool-selection accuracy (exact set) | {s.tool_exact_pct}% |",
+        f"| Tool-selection accuracy (exact set) | {s.tool_exact_pct}% ({tool_exact_k}/{len(ok)}) |",
         f"| Tool-selection mean Jaccard | {s.tool_mean_jaccard} |",
         f"| Numerical accuracy (within tolerance) | {s.numeric_accuracy_pct}% (n={s.numeric_n}) |",
         f"| Answer-content checks passed | {s.contains_accuracy_pct}% (n={s.contains_n}) |",
         f"| Avg planner iterations | {s.avg_iterations} |",
         f"| Avg tool calls / question | {s.avg_tool_calls} |",
-        f"| **Reflection trigger rate** | **{s.reflection_trigger_rate_pct}%** |",
+        f"| **Reflection trigger rate** | **{s.reflection_trigger_rate_pct}%** ({refl_k}/{len(ok)}) |",
         f"| Reflection recall on questions designed to need it | "
         f"{s.reflection_recall_pct}% (n={s.reflection_expected_n}) |",
         f"| Avg latency / question | {s.avg_latency_s}s |",
@@ -165,7 +168,7 @@ def _load_partial(path: Path) -> QuestionResult | None:
     if not path.exists():
         return None
     try:
-        d = json.loads(path.read_text())
+        d = json.loads(path.read_text(encoding="utf-8"))
         valid = {f.name for f in fields(QuestionResult)}
         return QuestionResult(**{k: v for k, v in d.items() if k in valid})
     except Exception:
@@ -190,7 +193,7 @@ def main(argv: list[str] | None = None) -> int:
         os.environ["LLM_PROVIDER"] = args.provider
     provider = get_llm().name
 
-    items = json.loads(Path(args.dataset).read_text())
+    items = json.loads(Path(args.dataset).read_text(encoding="utf-8"))
     if args.ids:
         wanted = {x.strip() for x in args.ids.split(",")}
         items = [it for it in items if it["id"] in wanted]
@@ -219,7 +222,9 @@ def main(argv: list[str] | None = None) -> int:
 
     def worker(it: dict) -> QuestionResult:
         r = _run_one(it, max_iterations=args.max_iterations)  # own graph for thread isolation
-        _partial_path(out_dir, name, it["id"]).write_text(json.dumps(r.to_dict(), indent=2))
+        _partial_path(out_dir, name, it["id"]).write_text(
+            json.dumps(r.to_dict(), indent=2), encoding="utf-8"
+        )
         return r
 
     def _log(r: QuestionResult) -> None:
@@ -244,10 +249,14 @@ def main(argv: list[str] | None = None) -> int:
     missing = [it["id"] for it in items if it["id"] not in results_by_id]
     summary = summarize(results)
     when = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    (out_dir / f"{name}.md").write_text(_markdown(summary, results, provider, when))
+    # Explicit UTF-8: the report uses ✓/✗, which the Windows default code page can't encode.
+    (out_dir / f"{name}.md").write_text(
+        _markdown(summary, results, provider, when), encoding="utf-8"
+    )
     (out_dir / f"{name}.json").write_text(json.dumps(
         {"provider": provider, "when": when, "summary": summary.to_dict(),
-         "results": [r.to_dict() for r in results], "missing": missing}, indent=2))
+         "results": [r.to_dict() for r in results], "missing": missing}, indent=2),
+        encoding="utf-8")
 
     print("\n=== SUMMARY ===")
     print(json.dumps(summary.to_dict(), indent=2))

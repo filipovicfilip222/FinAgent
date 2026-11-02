@@ -17,13 +17,13 @@
 
 | Metric | Value |
 |---|---|
-| Tool-selection accuracy (exact set) | 36.4% |
+| Tool-selection accuracy (exact set) | 36.4% (8/22) |
 | Tool-selection mean Jaccard | 0.674 |
 | Numerical accuracy (within tolerance) | 100.0% (n=14) |
 | Answer-content checks passed | 90.0% (n=10) |
 | Avg planner iterations | 1.14 |
 | Avg tool calls / question | 1.95 |
-| **Reflection trigger rate** | **54.5%** |
+| **Reflection trigger rate** | **54.5%** (12/22) |
 | Reflection recall on questions designed to need it | 100.0% (n=5) |
 | Avg latency / question | 19.31s |
 | Confidence distribution | {"high": 14, "medium": 3, "low": 5} |
