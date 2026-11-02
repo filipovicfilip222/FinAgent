@@ -61,6 +61,13 @@ CONCEPT_ALIASES = {
 
 BASE_URL = "https://data.sec.gov/api/xbrl/companyconcept/CIK{cik}/us-gaap/{tag}.json"
 
+# Short cache-file names for very long tags, so a clone in a deep folder stays under
+# Windows' 260-character path limit.
+CACHE_TAG_NAMES = {
+    "RevenueFromContractWithCustomerExcludingAssessedTax": "RevenueExclTax",
+    "RevenueFromContractWithCustomerIncludingAssessedTax": "RevenueInclTax",
+}
+
 
 def _fixtures_dir() -> Path:
     d = get_settings().project_root / "data" / "fixtures"
@@ -69,7 +76,7 @@ def _fixtures_dir() -> Path:
 
 
 def _cache_path(cik: str, tag: str) -> Path:
-    return _fixtures_dir() / f"CIK{cik}_{tag}.json"
+    return _fixtures_dir() / f"CIK{cik}_{CACHE_TAG_NAMES.get(tag, tag)}.json"
 
 
 def _fetch_live(cik: str, tag: str) -> dict:
