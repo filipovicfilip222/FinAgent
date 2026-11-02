@@ -10,7 +10,7 @@ state graph (not a black-box agent loop), and an **evaluation harness** measures
 selection, numerical accuracy, and whether the reflection loop actually fires.
 
 > Eval (n = 22 questions, Claude Sonnet 5 `claude-sonnet-5`; q07 ran on Claude Haiku 4.5):
-> numerical accuracy **100% (14/14** questions with a checkable number); reflection fired on
+> numerical accuracy **100%** (14/14 questions with a checkable number); reflection fired on
 > **12/22** (8 for missing data, 4 because RAG was unavailable) and on **5/5** questions
 > designed to need it; crashed runs **0/22**, runs with a tool error **5/22**.
 > In this run only SEC EDGAR was exercised end to end; see [Known gaps](#known-gaps).
