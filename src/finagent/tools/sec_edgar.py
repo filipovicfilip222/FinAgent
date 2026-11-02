@@ -11,8 +11,8 @@ Two behaviours worth calling out:
   just ask for "Revenues" and still get an answer.
 * **Transparent on-disk cache.** Every successful live response is cached under
   ``data/fixtures/``; if the network is unavailable the tool serves the cached copy.
-  This makes the eval reproducible (and rate-limit friendly) and is the mechanism that
-  lets the eval run in the build sandbox, where ``data.sec.gov`` is firewalled off.
+  This makes the eval reproducible (and rate-limit friendly) and lets it run fully
+  offline from the committed fixtures.
 """
 
 from __future__ import annotations

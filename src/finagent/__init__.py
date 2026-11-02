@@ -1,4 +1,4 @@
-"""FinAgent — a multi-agent financial research system.
+"""FinAgent: a LangGraph financial research agent (planner + reflection).
 
 Public surface kept intentionally small; import submodules directly
 (``from finagent.graph import build_graph``) for everything else.

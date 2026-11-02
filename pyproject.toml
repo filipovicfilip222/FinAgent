@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "finagent"
 version = "0.1.0"
-description = "FinAgent — a multi-agent financial research system (LangGraph + Claude) with SEC EDGAR, web search, a sandboxed calculator and RAG."
+description = "FinAgent: LangGraph financial research agent (planner + reflection, Claude) with SEC EDGAR, web search, a sandboxed calculator and RAG tools."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Filip" }]
+authors = [{ name = "Filip Filipović" }]
 keywords = ["langgraph", "agents", "llm", "finance", "sec-edgar", "rag", "evaluation"]
 
 # Core runtime — enough to run the graph, the eval harness and the API.
@@ -27,13 +27,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# RAG stack — the user runs this locally (embedding providers are network-gated).
+# RAG stack (optional; needs an embedding key, see .env.example).
 rag = [
     "chromadb>=0.5.0",
     "voyageai>=0.3.0",
     "pypdf>=4.2.0",
 ]
-# Alternate LLM provider for the A/B comparison mentioned in the plan.
+# Alternate LLM provider (for an A/B comparison, see README → Future work).
 openai = ["openai>=1.40.0"]
 # Alternate web-search provider (default web search uses the Anthropic server tool).
 tavily = ["tavily-python>=0.5.0"]

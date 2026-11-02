@@ -2,7 +2,7 @@
 
 Using a Pydantic ``BaseModel`` (rather than a ``TypedDict``) as the graph state
 gives us validation and a clean object to inspect after every checkpoint — handy
-for both the eval harness and LangSmith traces.
+for both the eval harness and tracing.
 """
 
 from __future__ import annotations
