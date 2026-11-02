@@ -1,14 +1,17 @@
 # FinAgent — Evaluation Report
 
 - **Run at:** 2026-07-23 (real Anthropic run)
-- **LLM provider:** `anthropic` — Claude Sonnet (`claude-sonnet-5`) for 21/22 questions; `q07` used Claude Haiku (`claude-haiku-4-5-20251001`) to fit the build sandbox's per-call time limit (its 4 sequential SEC look-ups exceed one window on Sonnet).
+- **LLM provider:** `anthropic` — Claude Sonnet 5 (`claude-sonnet-5`) for 21/22 questions; `q07` ran on Claude Haiku 4.5 (`claude-haiku-4-5-20251001`), so this is not a single-model run.
 - **Questions:** 22  ·  **Errors:** 0
 
-### Run notes / environment caveats
+### Run notes
 
-- **SEC EDGAR** was served from the committed fixtures (`SEC_EDGAR_MODE=cache`) — real filing numbers, reproducible, and runnable where `data.sec.gov` is firewalled. On a normal machine the same tool fetches live.
-- **RAG questions** (`q10`, `q11`, `q12`, `q22`) show **low confidence by design here**: the build sandbox has no embedding backend (all embedding endpoints are network-gated), so `rag_retrieve` raises and the agent — correctly — refuses to fabricate an answer and reports low confidence. Run `python -m finagent.rag.ingest` locally with an embedding key to exercise these end-to-end.
-- **Tool-selection "exact"** is moderate (36%) mainly because (a) on simple derived values the model often computes inline instead of calling `calculator`, and (b) RAG questions fan out to fallback tools when retrieval fails. Mean Jaccard (0.67) reflects that the *primary* tool is almost always right. See Design decisions → "known gaps".
+- **Errors: 0** counts crashed runs (0/22). 5/22 questions had a tool error the agent finished with low confidence: `q10`, `q11`, `q12`, `q22` (RAG) and `q18` (SEC).
+- **SEC EDGAR** was served from the committed fixtures (`SEC_EDGAR_MODE=cache`): real filing numbers, reproducible offline. With `SEC_EDGAR_MODE=auto` the tool fetches from `data.sec.gov` and falls back to the fixtures.
+- **RAG was not exercised in this run.** `chromadb` was not installed, so `rag_retrieve` raised `ModuleNotFoundError` on every call in the RAG questions (`q10`, `q11`, `q12`, `q22`); the agent reported low confidence instead of answering. To run them end to end: `pip install -e .[rag]`, then `python -m finagent.rag.ingest` with an embedding key.
+- **Web search** returned results only in `q13`; in `q10`, `q11` and `q22` it ran as the offline stub.
+- **Calculator** was never selected (0/22).
+- **Tool-selection "exact"** is moderate (36.4%, 8/22) mainly because (a) on derived values the model computes inline instead of calling `calculator`, and (b) RAG questions fan out to fallback tools because retrieval failed. The first tool chosen was an expected one in 22/22 questions (mean Jaccard 0.674). See README → Known gaps.
 
 ## Summary
 
